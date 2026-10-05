@@ -56,6 +56,6 @@ La guía requiere consumo GET móvil; el POST móvil corresponde a la sesión 8.
 
 ## Informe integrado
 
-El informe está disponible en `evidencias/Informe_Guia_Practica_07_Integrado.pdf` y su copia editable `.docx`. Reúne el informe móvil y la documentación del backend, con once imágenes de evidencia. La portada indica 29 de septiembre de 2026 por solicitud de la estudiante; las fechas de ejecución de las evidencias se mantienen como 4 de octubre de 2026. iOS permanece pendiente.
+El informe está disponible en `evidencias/Informe_Guia_Practica_07_Integrado.pdf`. Reúne el informe móvil y la documentación del backend, con once imágenes de evidencia. La portada indica 29 de septiembre de 2026 por solicitud de la estudiante; las fechas de ejecución de las evidencias se mantienen como 4 de octubre de 2026. iOS permanece pendiente.
 
 El PDF se exportó con Microsoft Word y sus 17 páginas fueron renderizadas e inspeccionadas visualmente. El contenido y las once imágenes se conservaron. Los documentos originales no fueron modificados.
