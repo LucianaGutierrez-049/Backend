@@ -56,6 +56,6 @@ La guía requiere consumo GET móvil; el POST móvil corresponde a la sesión 8.
 
 ## Informe integrado
 
-La copia `evidencias/Informe_Guia_Practica_07_Integrado.docx` reúne el informe móvil y la documentación del backend, con once imágenes de evidencia. Conserva los originales y corrige la fecha de verificación a 4 de octubre de 2026 según el índice de evidencias y el registro Ktor. iOS permanece pendiente.
+El informe está disponible en `evidencias/Informe_Guia_Practica_07_Integrado.pdf` y su copia editable `.docx`. Reúne el informe móvil y la documentación del backend, con once imágenes de evidencia. La portada indica 29 de septiembre de 2026 por solicitud de la estudiante; las fechas de ejecución de las evidencias se mantienen como 4 de octubre de 2026. iOS permanece pendiente.
 
-El contenido y las imágenes de la copia se comprobaron estructuralmente. La revisión visual de sus páginas está pendiente: el renderizador empaquetado no pudo ejecutarse porque falta LibreOffice en el entorno de herramientas. Revisar el documento en Word antes de entregarlo al docente.
+El PDF se exportó con Microsoft Word y sus 17 páginas fueron renderizadas e inspeccionadas visualmente. El contenido y las once imágenes se conservaron. Los documentos originales no fueron modificados.
