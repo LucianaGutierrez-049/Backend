@@ -53,3 +53,9 @@ El 4 de octubre de 2026 se verificaron compilación, 21 pruebas sin fallos ni er
 Las capturas y el cuerpo JSON se incorporan en `evidencias/sesion07/`, con su informe de resultados. La aplicación móvil y sus pruebas se mantienen en el repositorio independiente [PharmaMobile](https://github.com/LucianaGutierrez-049/PharmaMobile/tree/feature/ktor-client-Gutierrez). La ejecución iOS quedó pendiente de macOS/Xcode según el reporte de la integración.
 
 La guía requiere consumo GET móvil; el POST móvil corresponde a la sesión 8. Este repositorio documenta el backend, no acredita por sí solo la práctica completa.
+
+## Informe integrado
+
+La copia `evidencias/Informe_Guia_Practica_07_Integrado.docx` reúne el informe móvil y la documentación del backend, con once imágenes de evidencia. Conserva los originales y corrige la fecha de verificación a 4 de octubre de 2026 según el índice de evidencias y el registro Ktor. iOS permanece pendiente.
+
+El contenido y las imágenes de la copia se comprobaron estructuralmente. La revisión visual de sus páginas está pendiente: el renderizador empaquetado no pudo ejecutarse porque falta LibreOffice en el entorno de herramientas. Revisar el documento en Word antes de entregarlo al docente.
