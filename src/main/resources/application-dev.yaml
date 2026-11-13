@@ -2,9 +2,10 @@ server:
   port: 8080
 spring:
   datasource:
-    url: jdbc:oracle:thin:@//localhost:1522/FREEPDB1
-    username: PHARMADB
-    password: 1234567
+    # Credenciales fuera del repositorio: se leen de variables de entorno.
+    url: ${DB_URL:jdbc:oracle:thin:@//localhost:1522/FREEPDB1}
+    username: ${DB_USERNAME:PHARMADB}
+    password: ${DB_PASSWORD}
   jpa:
     database-platform: org.hibernate.dialect.OracleDialect
     hibernate:
@@ -48,7 +49,7 @@ logging:
 app:
   cors:
     allowed-origins: http://localhost:5173,http://127.0.0.1:5173,http://localhost:4200
-  # Clave HMAC del JWT en Base64 (minimo 256 bits). Solo para desarrollo.
+  # Clave HMAC del JWT en Base64 (minimo 256 bits), leida de JWT_SECRET.
   jwt:
-    secret: ILPEwcQMZU9TnjpXzv/hRWNoC9n1Imz+nPTBwMZH7TBX9n7f7XagfIgD7LhCEFZNclj1zxfx9FbVvbpfH45HOA==
+    secret: ${JWT_SECRET}
     expiracion-minutos: 60
