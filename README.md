@@ -1,6 +1,6 @@
 # Backend académico — PharmaSoft
 
-API REST utilizada por PharmaMobile en la Guía Práctica de Laboratorio N.º 07. Esta copia se basa en [dreyna/pharmaSoft](https://github.com/dreyna/pharmaSoft); consulta [la procedencia del código](PROCEDENCIA.md). Luciana Gutiérrez mantiene este repositorio y documenta el entorno y las verificaciones realizadas.
+API REST utilizada por PharmaMobile (versión de entrega 1.0.0, etiqueta `v1.0-final`). Incluye catálogo, clientes, ventas, reportes y seguridad con JWT y roles. Esta copia se basa en [dreyna/pharmaSoft](https://github.com/dreyna/pharmaSoft); consulta [la procedencia del código](PROCEDENCIA.md). Luciana Gutiérrez mantiene este repositorio y documenta el entorno y las verificaciones realizadas.
 
 ## Requisitos y entorno local
 
@@ -23,6 +23,17 @@ docker exec pharmasoft-oracle healthcheck.sh
 
 Esperar a que la comprobación termine correctamente y confirmar que Oracle admite la conexión del esquema configurado. Las tablas pertenecientes al proyecto se crean mediante Flyway, no manualmente.
 
+Las credenciales no están en el repositorio: se leen de variables de entorno. Definirlas en la misma
+ventana de PowerShell antes de arrancar (pedir los valores a la responsable del proyecto):
+
+```powershell
+$env:DB_PASSWORD = '<contraseña del esquema PHARMADB>'
+$env:JWT_SECRET  = '<clave Base64 de al menos 256 bits>'
+# Opcionales: $env:DB_URL y $env:DB_USERNAME (por defecto localhost:1522/FREEPDB1 y PHARMADB)
+```
+
+Para generar una clave JWT nueva: `[Convert]::ToBase64String((1..64 | ForEach-Object { Get-Random -Maximum 256 }))`.
+
 ```powershell
 $env:JAVA_HOME = 'C:\Program Files\Java\jdk-21.0.12'
 $env:PATH = "$env:JAVA_HOME\bin;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32;$env:PATH"
@@ -31,9 +42,25 @@ $env:PATH = "$env:JAVA_HOME\bin;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Wi
 .\mvnw.cmd spring-boot:run
 ```
 
-Adaptar la ruta del JDK a la instalación local. El perfil por defecto es `dev`, con puerto 8080. Las pruebas de contexto requieren Oracle disponible. Flyway aplica `V1__esquema_inicial.sql`; Hibernate valida las entidades con `ddl-auto: validate`.
+Adaptar la ruta del JDK a la instalación local. El perfil por defecto es `dev`, con puerto 8080. Las pruebas de contexto requieren Oracle disponible. Flyway aplica `V1__esquema_inicial.sql`, `V2__seguridad_empleados_usuarios.sql` y `V3__datos_iniciales_seguridad.sql`; Hibernate valida las entidades con `ddl-auto: validate`.
 
-La configuración `dev` contiene credenciales académicas locales. No reutilizarlas ni exponer esta instancia en producción. El perfil `prod` recibe `DB_URL`, `DB_USERNAME` y `DB_PASSWORD` mediante variables de entorno. No incluir credenciales reales en documentación, capturas o commits.
+`application-dev.yaml` ya no contiene credenciales: `DB_PASSWORD` y `JWT_SECRET` son obligatorias y, si faltan,
+la aplicación no arranca. Los valores anteriores siguen en el historial heredado de Git; son locales de desarrollo
+y no deben reutilizarse en otro entorno.
+
+## Usuarios de prueba
+
+`V3__datos_iniciales_seguridad.sql` crea tres usuarios locales (sus contraseñas de prueba están en los comentarios
+de esa migración y deben cambiarse fuera del laboratorio):
+
+| Usuario | Rol | Permisos principales |
+| --- | --- | --- |
+| `admin` | ADMIN | Todos |
+| `vendedor` | VENDEDOR | Catálogo (lectura), clientes y ventas |
+| `almacen` | ALMACENERO | Catálogo (lectura y escritura) |
+
+Comprobación rápida: `GET http://localhost:8080/api/health` responde `Backend funcionando correctamente`, y
+`POST /api/v1/auth/login` con un usuario válido devuelve el token. El perfil `prod` recibe `DB_URL`, `DB_USERNAME` y `DB_PASSWORD` mediante variables de entorno. No incluir credenciales reales en documentación, capturas o commits.
 
 ## Endpoints de la práctica
 
