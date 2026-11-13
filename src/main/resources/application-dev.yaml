@@ -48,3 +48,7 @@ logging:
 app:
   cors:
     allowed-origins: http://localhost:5173,http://127.0.0.1:5173,http://localhost:4200
+  # Clave HMAC del JWT en Base64 (minimo 256 bits). Solo para desarrollo.
+  jwt:
+    secret: ILPEwcQMZU9TnjpXzv/hRWNoC9n1Imz+nPTBwMZH7TBX9n7f7XagfIgD7LhCEFZNclj1zxfx9FbVvbpfH45HOA==
+    expiracion-minutos: 60
